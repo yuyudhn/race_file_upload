@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.2-apache
+    container_name: php-race-upload-lab
+    hostname: race-upload
+    ports:
+      - "127.0.0.1:8089:80"
+    volumes:
+      - ./webroot:/var/www/html
+    command: sh -c "mkdir /var/www/html/uploads && chmod -R 777 /var/www/html/uploads && apache2-foreground"
+    restart: unless-stopped
